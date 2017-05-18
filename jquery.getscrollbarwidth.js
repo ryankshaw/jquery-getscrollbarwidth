@@ -6,7 +6,15 @@
 /**
  * Gets the width of the OS scrollbar
  */
-(function($) {
+(function (factory) { // UMD wrapper
+  if (typeof module === 'object' && module.exports) {
+    factory(require('jquery'))
+  } else if (typeof define === 'function' && define.amd) {
+    define(['jquery'], factory)
+  } else {
+    factory(jQuery)
+  }
+}(function ($) {
 	var scrollbarWidth = 0;
 	$.getScrollbarWidth = function() {
 		if ( !scrollbarWidth ) {
@@ -28,4 +36,4 @@
 		}
 		return scrollbarWidth;
 	};
-})(jQuery);
+}));
